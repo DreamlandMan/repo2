@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Services.IService">
+    <resultMap id="elems" type="Services.Elems">
+        <id property="id" column="id"></id>
+        <result property="name" column="name"></result>
+        <result property="age" column="age"></result>
+        <result property="birthday" column="birthday"></result>
+        <result property="sex" column="sex"></result>
+    </resultMap>
+    <select id="findAll" resultType="Services.Elems">select * from elems1</select>
+    <select id="findById" resultType="Services.Elems">select * from elems1 WHERE id=#{id}</select>
+    <select id="findByName" resultType="Services.Elems">select * from elems1 WHERE name=#{name}</select>
+    <select id="findByAge" resultType="Services.Elems">select * from elems1 WHERE age=#{age}</select>
+    <select id="findBySex" resultType="Services.Elems">select * from elems1 where sex=#{sex}</select>
+    <select id="findByUsername" resultType="Services.Elems">select * from elems1 where username=#{username}</select>
+
+    <delete id="deleteAll">delete from elems1</delete>
+    <delete id="deleteById" parameterType="int">delete from elems1 where id=id</delete>
+    <delete id="deleteByName" parameterType="String">delete from elems1 where name=name</delete>
+    <delete id="deleteByAge" parameterType="int">delete from elems1 where age=age</delete>
+    <delete id="deleteBySex" parameterType="String">delete from elems1 where sex=#{sex}</delete>
+
+    <update id="update" parameterType="Services.Elems">update elems1 set name=#{name},age=#{age},birthday=#{birthday},sex=#{sex} where id=#{id} and name=#{name}</update>
+    <select id="isUser" parameterType="Services.Elems" resultType="Services.Elems">select * from elems1 where username=#{username} and password=#{password}</select>
+    <update id="updatePassword" parameterType="Services.Elems">update elems1 set password=#{password} where username=#{username} </update>
+    <insert id="insert" parameterType="Services.Elems">insert into elems1 set name=#{name},age=#{age},birthday=#{birthday},sex=#{sex},username=#{username},password=#{password}</insert>
+</mapper>
